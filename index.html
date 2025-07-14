@@ -1,50 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DAYMANE2K</title>
 
-  <!-- ربط ملف التنسيق -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- أيقونة التبويب -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- أيقونات Font Awesome -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <!-- خلفية الحركة -->
   <canvas id="background"></canvas>
 
   <main>
     <header>
-      <h1>Welcome to DAYMANE_TV</h1>
+      <h1>Welcome to DAYMANE2K</h1>
       <p>Your source for all info about the channel</p>
 
       <div class="buttons-container">
-        <a href="https://www.youtube.com/@DAYMANE_2K" target="_blank" class="btn">Visit Channel</a>
-        <a href="https://discord.gg/35TUs3KSEm" target="_blank" class="btn discord-btn">
+        <a href="https://www.youtube.com/@DAYMANE_TV" target="_blank" class="btn btn-primary">
+          <i class="fab fa-youtube"></i> Visit Channel
+        </a>
+        <a href="https://discord.gg/35TUs3KSEm" target="_blank" class="btn btn-discord">
           <i class="fab fa-discord"></i> Join Discord Server
         </a>
+        <button id="toggleTheme" class="btn btn-toggle" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
       </div>
 
-      <div class="music-player">
-        <audio id="audio" src="assets/music.mp3"></audio>
-        <button id="playPause" class="btn music-btn">Play</button>
-        <input type="range" id="progress" value="0" step="1" />
-        <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
-      </div>
+      <section class="about">
+        <h2>About DAYMANE2K</h2>
+        <p>
+          DAYMANE2K is a YouTube channel dedicated to creative and engaging content. Join us and stay connected for fresh videos and fun!
+        </p>
+      </section>
+
+      <section class="stats">
+        <h2>Channel Stats</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <h3>Subscribers</h3>
+            <p>52</p>
+          </div>
+          <div class="stat">
+            <h3>Videos</h3>
+            <p>3</p>
+          </div>
+          <div class="stat">
+            <h3>Views</h3>
+            <p>390</p>
+          </div>
+        </div>
+      </section>
     </header>
-
-    <section class="about">
-      <h2>About DAYMANE2K</h2>
-      <p>
-        DAYMANE2K is a YouTube channel focused on creative and engaging content. Stay connected and enjoy the videos!
-      </p>
-    </section>
   </main>
 
   <footer>
@@ -57,6 +67,16 @@
     </div>
     <p>© 2025 DAYMANE2K. All rights reserved.</p>
   </footer>
+
+  <!-- مشغل الموسيقى جانبي -->
+  <div class="music-player-sidebar" aria-label="Music Player">
+    <audio id="audio" src="assets/music.mp3" loop></audio>
+    <button id="playPause" aria-label="Play/Pause Music"><i class="fas fa-pause"></i></button>
+    <div class="volume-control">
+      <i class="fas fa-volume-up"></i>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="1" aria-label="Volume Control" />
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>
