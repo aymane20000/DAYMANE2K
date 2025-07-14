@@ -1,129 +1,83 @@
-// الخلفية المتحركة مع تغيير لون النقاط حسب الوضع
-const canvas = document.getElementById('background');
-const ctx = canvas.getContext('2d');
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAYMANE2K</title>
 
-function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener('resize', resize);
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
-let circles = [];
-const count = 40;
+  <canvas id="background"></canvas>
 
-function createCircles() {
-  circles = [];
-  for (let i = 0; i < count; i++) {
-    circles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      radius: Math.random() * 3 + 1,
-      dx: (Math.random() - 0.5) * 0.4,
-      dy: (Math.random() - 0.5) * 0.4,
-    });
-  }
-}
-createCircles();
+  <main>
+    <header>
+      <h1>Welcome to DAYMANE2K</h1>
+      <p>Your source for all info about the channel</p>
 
-function animate() {
-  const body = document.body;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+      <div class="buttons-container">
+        <a href="https://www.youtube.com/@DAYMANE_TV" target="_blank" class="btn btn-primary">
+          <i class="fab fa-youtube"></i> Visit Channel
+        </a>
+        <a href="https://discord.gg/35TUs3KSEm" target="_blank" class="btn btn-discord">
+          <i class="fab fa-discord"></i> Join Discord Server
+        </a>
+        <button id="toggleTheme" class="btn btn-toggle" aria-label="Toggle Dark/Light Mode">
+          <i class="fas fa-moon"></i> Dark Mode
+        </button>
+      </div>
 
-  // الخلفية حسب الوضع
-  if(body.classList.contains('light')){
-    ctx.fillStyle = '#e6f2ff'; // لون فاتح
-  } else if(body.classList.contains('dark-circles')){
-    ctx.fillStyle = '#121212'; // داكن جدا
-  } else {
-    ctx.fillStyle = '#001f3f'; // افتراضي
-  }
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+      <section class="about">
+        <h2>About DAYMANE2K</h2>
+        <p>
+          DAYMANE2K is a YouTube channel dedicated to creative and engaging content. Join us and stay connected for fresh videos and fun!
+        </p>
+      </section>
 
-  // لون النقاط حسب المتغير --circle-color
-  let circleColor = getComputedStyle(body).getPropertyValue('--circle-color').trim() || '#00aaff';
+      <section class="stats">
+        <h2>Channel Stats</h2>
+        <div class="stats-grid">
+          <div class="stat">
+            <h3>Subscribers</h3>
+            <p>150,000+</p>
+          </div>
+          <div class="stat">
+            <h3>Videos</h3>
+            <p>320+</p>
+          </div>
+          <div class="stat">
+            <h3>Views</h3>
+            <p>25M+</p>
+          </div>
+        </div>
+      </section>
+    </header>
+  </main>
 
-  ctx.fillStyle = circleColor;
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@DAYMANE_TV" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://discord.gg/35TUs3KSEm" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+    </div>
+    <p>© 2025 DAYMANE2K. All rights reserved.</p>
+  </footer>
 
-  circles.forEach(c => {
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
-    ctx.fill();
+  <!-- مشغل الموسيقى جانبي -->
+  <div class="music-player-sidebar" aria-label="Music Player">
+    <audio id="audio" src="assets/music.mp3" loop></audio>
+    <button id="playPause" aria-label="Play/Pause Music"><i class="fas fa-pause"></i></button>
+    <div class="volume-control">
+      <i class="fas fa-volume-up"></i>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="1" aria-label="Volume Control" />
+    </div>
+  </div>
 
-    c.x += c.dx;
-    c.y += c.dy;
-
-    if (c.x < 0 || c.x > canvas.width) c.dx *= -1;
-    if (c.y < 0 || c.y > canvas.height) c.dy *= -1;
-  });
-
-  requestAnimationFrame(animate);
-}
-animate();
-
-
-// مشغل الموسيقى
-const audio = document.getElementById('audio');
-const playBtn = document.getElementById('playPause');
-const volume = document.getElementById('volume');
-
-window.addEventListener('load', () => {
-  audio.volume = volume.value;
-  // تشغيل تلقائي عند الدخول
-  audio.play().catch(() => {
-    // قد يرفض المتصفح التشغيل التلقائي بدون تفاعل المستخدم، فلا مشكلة
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  });
-});
-
-playBtn.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-  } else {
-    audio.pause();
-    playBtn.innerHTML = '<i class="fas fa-play"></i>';
-  }
-});
-
-volume.addEventListener('input', () => {
-  audio.volume = volume.value;
-});
-
-// تبديل الوضع الليلي / الفاتح مع تغيير الخلفية والنقاط
-const toggleThemeBtn = document.getElementById('toggleTheme');
-const body = document.body;
-
-function updateToggleButton() {
-  if (body.classList.contains('light')) {
-    toggleThemeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-    // إزالة الوضع الرمادي للنقاط لو وضع فاتح
-    body.classList.remove('dark-circles');
-  } else {
-    toggleThemeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-    // إضافة الوضع الرمادي للنقاط لو وضع داكن
-    body.classList.add('dark-circles');
-  }
-}
-
-if (localStorage.getItem('theme') === 'light') {
-  body.classList.add('light');
-  body.classList.remove('dark-circles');
-} else {
-  body.classList.remove('light');
-  body.classList.add('dark-circles');
-}
-updateToggleButton();
-
-toggleThemeBtn.addEventListener('click', () => {
-  if (body.classList.contains('light')) {
-    body.classList.remove('light');
-    body.classList.add('dark-circles');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    body.classList.add('light');
-    body.classList.remove('dark-circles');
-    localStorage.setItem('theme', 'light');
-  }
-  updateToggleButton();
-});
+  <script src="js/script.js"></script>
+</body>
+</html>
