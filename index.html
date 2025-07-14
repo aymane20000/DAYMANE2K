@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DAYMANE2K</title>
+
+  <!-- ربط ملف التنسيق -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- أيقونة التبويب -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- أيقونات Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- خلفية الحركة -->
+  <canvas id="background"></canvas>
+
+  <main>
+    <header>
+      <h1>Welcome to DAYMANE_TV</h1>
+      <p>Your source for all info about the channel</p>
+
+      <div class="buttons-container">
+        <a href="https://www.youtube.com/@DAYMANE_2K" target="_blank" class="btn">Visit Channel</a>
+        <a href="https://discord.gg/35TUs3KSEm" target="_blank" class="btn discord-btn">
+          <i class="fab fa-discord"></i> Join Discord Server
+        </a>
+      </div>
+
+      <div class="music-player">
+        <audio id="audio" src="assets/music.mp3"></audio>
+        <button id="playPause" class="btn music-btn">Play</button>
+        <input type="range" id="progress" value="0" step="1" />
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+      </div>
+    </header>
+
+    <section class="about">
+      <h2>About DAYMANE2K</h2>
+      <p>
+        DAYMANE2K is a YouTube channel focused on creative and engaging content. Stay connected and enjoy the videos!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@DAYMANE_TV" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://discord.gg/35TUs3KSEm" target="_blank" aria-label="Discord"><i class="fab fa-discord"></i></a>
+    </div>
+    <p>© 2025 DAYMANE2K. All rights reserved.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/* ألوان وأسلوب عام */
+:root {
+  --primary-color: #00aaff;
+  --text-color: #fff;
+  --glow-effect: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  background-color: #001f3f;
+  overflow: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+  padding: 100px 20px 50px;
+  text-align: center;
+}
+
+/* عناوين الهيدر */
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+/* حاوية الأزرار */
+.buttons-container {
+  margin-bottom: 30px;
+}
+
+/* تصميم الأزرار */
+.btn {
+  display: inline-block;
+  margin: 0 15px 10px;
+  padding: 15px 30px;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  box-shadow: var(--glow-effect);
+  cursor: pointer;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+  transform: translateY(-5px);
+}
+
+/* زر ديسكورد خاص */
+.btn.discord-btn {
+  background-color: #5865F2;
+  box-shadow: 0 0 10px #5865F2, 0 0 20px #5865F2;
+}
+
+.btn.discord-btn:hover {
+  background-color: #4752C4;
+  box-shadow: 0 0 20px #4752C4, 0 0 40px #4752C4;
+}
+
+/* مشغل الموسيقى */
+.music-player {
+  margin-top: 40px;
+}
+
+/* زر التشغيل */
+.music-btn {
+  padding: 15px 40px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 50px;
+  color: var(--text-color);
+  box-shadow: var(--glow-effect);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-btn:hover {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* أشرطة التحكم (التقدم والصوت) */
+.music-player input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 200px;
+  height: 5px;
+  background: #fff;
+  border-radius: 5px;
+  margin: 20px 10px;
+  outline: none;
+  box-shadow: var(--glow-effect);
+  cursor: pointer;
+}
+
+/* شكل المقبض في Chrome/Safari */
+.music-player input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--glow-effect);
+  transition: background 0.3s;
+}
+
+.music-player input[type="range"]::-webkit-slider-thumb:hover {
+  background: #fff;
+}
+
+/* شكل المقبض في Firefox */
+.music-player input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--glow-effect);
+  transition: background 0.3s;
+}
+
+.music-player input[type="range"]::-moz-range-thumb:hover {
+  background: #fff;
+}
+
+/* قسم التعريف */
+.about {
+  max-width: 800px;
+  margin: 100px auto 0;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.1rem;
+}
+
+/* الفوتر */
+footer {
+  position: relative;
+  z-index: 2;
+  padding: 50px 20px;
+  text-align: center;
+  background: transparent;
+}
+
+/* أيقونات التواصل */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: var(--text-color);
+  font-size: 2rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+  color: var(--primary-color);
+  transform: translateY(-5px) scale(1.3);
+}
+
+/* نص حقوق النشر */
+footer p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* خلفية الحركة */
+canvas#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* دعم الوضع الفاتح */
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-color: #0066cc;
+    --text-color: #000;
+    --glow-effect: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  }
+
+  body {
+    background: #e6f2ff;
+  }
+}
