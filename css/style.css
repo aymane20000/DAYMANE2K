@@ -1,26 +1,35 @@
-/* ألوان وأسلوب عام */
 :root {
   --primary-color: #00aaff;
   --text-color: #fff;
-  --glow-effect: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  --glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  --bg-color: #001f3f;
+  --circle-color: #00aaff;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--text-color);
-  background-color: #001f3f;
-  overflow: hidden;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s, color 0.3s;
+  /* السماح بالتمرير */
+}
+
+body.light {
+  --primary-color: #0066cc;
+  --text-color: #000;
+  --glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+  --bg-color: #e6f2ff;
+  --circle-color: #004080;
 }
 
 main {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 100px 20px 50px;
   text-align: center;
 }
 
-/* عناوين الهيدر */
 header h1 {
   font-size: 3rem;
   margin-bottom: 20px;
@@ -31,14 +40,14 @@ header p {
   margin-bottom: 30px;
 }
 
-/* حاوية الأزرار */
 .buttons-container {
   margin-bottom: 30px;
 }
 
-/* تصميم الأزرار */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 15px 10px;
   padding: 15px 30px;
   font-size: 1rem;
@@ -46,10 +55,14 @@ header p {
   color: #fff;
   border: none;
   border-radius: 50px;
-  box-shadow: var(--glow-effect);
+  box-shadow: var(--glow);
   cursor: pointer;
   text-decoration: none;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn i {
+  font-size: 1.2rem;
 }
 
 .btn:hover {
@@ -57,90 +70,32 @@ header p {
   transform: translateY(-5px);
 }
 
-/* زر ديسكورد خاص */
-.btn.discord-btn {
+.btn-discord {
   background-color: #5865F2;
   box-shadow: 0 0 10px #5865F2, 0 0 20px #5865F2;
 }
 
-.btn.discord-btn:hover {
+.btn-discord:hover {
   background-color: #4752C4;
   box-shadow: 0 0 20px #4752C4, 0 0 40px #4752C4;
 }
 
-/* مشغل الموسيقى */
-.music-player {
-  margin-top: 40px;
-}
-
-/* زر التشغيل */
-.music-btn {
-  padding: 15px 40px;
-  background: transparent;
+.btn-toggle {
+  background-color: transparent;
   border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 15px 25px;
   border-radius: 50px;
-  color: var(--text-color);
-  box-shadow: var(--glow-effect);
-  cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.music-btn:hover {
-  background: var(--primary-color);
+.btn-toggle:hover {
+  background-color: var(--primary-color);
   color: #fff;
-  transform: translateY(-3px);
 }
 
-/* أشرطة التحكم (التقدم والصوت) */
-.music-player input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 200px;
-  height: 5px;
-  background: #fff;
-  border-radius: 5px;
-  margin: 20px 10px;
-  outline: none;
-  box-shadow: var(--glow-effect);
-  cursor: pointer;
-}
-
-/* شكل المقبض في Chrome/Safari */
-.music-player input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: var(--glow-effect);
-  transition: background 0.3s;
-}
-
-.music-player input[type="range"]::-webkit-slider-thumb:hover {
-  background: #fff;
-}
-
-/* شكل المقبض في Firefox */
-.music-player input[type="range"]::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: var(--glow-effect);
-  transition: background 0.3s;
-}
-
-.music-player input[type="range"]::-moz-range-thumb:hover {
-  background: #fff;
-}
-
-/* قسم التعريف */
 .about {
   max-width: 800px;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
   padding: 0 20px;
   line-height: 1.6;
 }
@@ -154,16 +109,56 @@ header p {
   font-size: 1.1rem;
 }
 
+/* إحصائيات القناة */
+.stats {
+  margin-top: 60px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stats h2 {
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  background: rgba(0, 170, 255, 0.15);
+  padding: 25px 40px;
+  border-radius: 15px;
+  box-shadow: var(--glow);
+  min-width: 130px;
+  transition: background-color 0.3s;
+}
+
+.stat h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+.stat p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 /* الفوتر */
 footer {
   position: relative;
-  z-index: 2;
-  padding: 50px 20px;
+  z-index: 1;
+  padding: 40px 20px;
   text-align: center;
   background: transparent;
+  margin-top: 80px;
 }
 
-/* أيقونات التواصل */
 .social-icons {
   display: flex;
   justify-content: center;
@@ -182,32 +177,107 @@ footer {
   transform: translateY(-5px) scale(1.3);
 }
 
-/* نص حقوق النشر */
 footer p {
   font-size: 0.9rem;
   opacity: 0.8;
   margin: 0;
 }
 
-/* خلفية الحركة */
+/* الخلفية المتحركة */
 canvas#background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+  background-color: var(--bg-color);
 }
 
-/* دعم الوضع الفاتح */
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #0066cc;
-    --text-color: #000;
-    --glow-effect: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
-  }
+/* مشغل الموسيقى الجانبي */
+.music-player-sidebar {
+  position: fixed;
+  top: 50%;
+  right: 20px; /* غيره لليسار اذا حبيت */
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  border-radius: 15px;
+  padding: 15px 20px;
+  box-shadow: 0 0 15px var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  color: #fff;
+}
 
-  body {
-    background: #e6f2ff;
-  }
+.music-player-sidebar button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.music-player-sidebar button:hover {
+  color: var(--primary-color);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-control i {
+  font-size: 1.2rem;
+}
+
+.volume-control input[type="range"] {
+  width: 100px;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+/* الوضع الليلي - تخصيص النقاط للون رمادي */
+body.dark-circles canvas#background {
+  background-color: #121212;
+}
+
+/* سنغير لون الدوائر للنقاط الرمادية */
+body.dark-circles {
+  --circle-color: #888;
+}
+
+/* ألوان النص في الوضع الداكن */
+body.dark-circles {
+  color: #eee;
 }
